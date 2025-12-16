@@ -9,7 +9,14 @@ script_path = sys.argv[1]
 report = run(script_path)
 
 print("\nPyScope Performance Report")
-print("-" * 30)
+print("-" * 40)
 print(f"Execution Time : {report['execution_time']:.4f} seconds")
 print(f"Average CPU    : {report['avg_cpu_percent']:.2f} %")
 print(f"Peak Memory   : {report['peak_memory_mb']:.2f} MB")
+
+print("\nTop Hotspots")
+print("-" * 40)
+for func, data in report["hotspots"]:
+    print(f"{func}")
+    print(f"  Calls      : {data['calls']}")
+    print(f"  Total Time : {data['total_time']:.4f} seconds\n")
