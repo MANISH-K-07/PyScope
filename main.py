@@ -1,5 +1,7 @@
 import sys
+
 from pyscope.runner import run
+from pyscope.html_report import generate_html_report
 
 
 def main():
@@ -12,8 +14,12 @@ def main():
     # Run profiler
     report = run(script_path)
 
-    # Persist report
+    # Save JSON report
     report_path = report.save()
+
+    # Generate HTML report
+    html_path = report_path.replace(".json", ".html")
+    generate_html_report(report, html_path)
 
     # CLI output
     print("\nPyScope Performance Report")
@@ -29,7 +35,8 @@ def main():
         print(f"  Calls      : {h['calls']}")
         print(f"  Total Time : {h['total_time']:.4f} seconds\n")
 
-    print(f"Report saved to: {report_path}")
+    print(f"JSON report saved to : {report_path}")
+    print(f"HTML report saved to : {html_path}")
 
 
 if __name__ == "__main__":
