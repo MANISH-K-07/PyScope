@@ -132,75 +132,66 @@ python main.py examples/slow_script.py
 ```
 PyScope Performance Report
 ----------------------------------------
-Execution Time : 1.5524 seconds
-Average CPU    : 28.31 %
-Peak Memory   : 18.84 MB
+Execution Time : 1.8917 seconds
+Average CPU    : 40.91 %
+Peak Memory   : 19.15 MB
 
 Top Hotspots
 ----------------------------------------
-examples/slow_script.py:<module>
-  Calls      : 1
-  Total Time : 1.4750 seconds
-
 examples/slow_script.py:slow
   Calls      : 1
-  Total Time : 1.4749 seconds
+  Total Time : 1.8782 seconds
 
 Optimization Suggestions
 ----------------------------------------
-• Function 'examples/slow_script.py:<module>' dominates runtime (95%).
+• Function 'examples/slow_script.py:slow' dominates runtime (99%).
 Consider optimizing its algorithm or reducing repeated work.
 
-JSON report saved to : reports\json\pyscope_report_2025-12-16T08-59-05.264930.json
-HTML report saved to : reports\html\pyscope_report_2025-12-16T08-59-05.264930.html
+JSON report saved to : reports\json\pyscope_report_2025-12-16T12-26-04.603376.json
+HTML report saved to : reports\html\pyscope_report_2025-12-16T12-26-04.603376.html
 
 Performance Regression Check
 ----------------------------------------
-⚠️ Execution time increased from 1.5516s → 1.5557s (+0.2635%)
-⚠️ Peak memory increased from 18.941MB → 19.0039MB (+0.3300%)
-⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4587s → 1.4644s
+⚠️ Execution time increased from 1.5524s → 1.9941s (+28.4541%)
+⚠️ Peak memory increased from 18.844MB → 19.2539MB (+2.1766%)
+⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4750s → 1.9084s
 ```
 
 - **HTML**
-<img width="1904" height="887" alt="image" src="https://github.com/user-attachments/assets/5e862c8e-9a65-4c56-9c1c-bb1a613eaa81" />
+<img width="1903" height="850" alt="image" src="https://github.com/user-attachments/assets/ccd55685-f101-461a-8b38-2acc3adf1f75" />
 
 - **JSON**
 ```
 {
-    "timestamp": "2025-12-16T08:59:05.264930",
+    "timestamp": "2025-12-16T12:26:04.603376",
     "script": "examples/slow_script.py",
-    "execution_time": 1.5523594999685884,
-    "avg_cpu_percent": 28.313333333333333,
-    "peak_memory_mb": 18.84375,
+    "execution_time": 1.8917008000425994,
+    "avg_cpu_percent": 40.90555555555555,
+    "peak_memory_mb": 19.15234375,
     "hotspots": [
-        {
-            "function": "examples/slow_script.py:<module>",
-            "calls": 1,
-            "total_time": 1.4749578996561468
-        },
         {
             "function": "examples/slow_script.py:slow",
             "calls": 1,
-            "total_time": 1.4749364000745118
+            "total_time": 1.878245399799198
         }
     ],
     "suggestions": [
-        "Function 'examples/slow_script.py:<module>' dominates runtime (95%).\nConsider optimizing its algorithm or reducing repeated work."
+        "Function 'examples/slow_script.py:slow' dominates runtime (99%).\nConsider optimizing its algorithm or reducing repeated work."
     ],
     "regression": {
         "status": "regression",
         "messages": [
             {
                 "level": "warning",
-                "text": "Execution time increased from 1.5516s \u2192 1.5557s (+0.2635%)"
+                "text": "Execution time increased from 1.5524s \u2192 1.9941s (+28.4541%)"
             },
             {
                 "level": "warning",
-                "text": "Peak memory increased from 18.941MB \u2192 19.0039MB (+0.3300%)"
+                "text": "Peak memory increased from 18.844MB \u2192 19.2539MB (+2.1766%)"
             },
             {
                 "level": "warning",
-                "text": "Top hotspot 'examples/slow_script.py:<module>' increased from 1.4587s \u2192 1.4644s"
+                "text": "Top hotspot 'examples/slow_script.py:<module>' increased from 1.4750s \u2192 1.9084s"
             }
         ]
     }

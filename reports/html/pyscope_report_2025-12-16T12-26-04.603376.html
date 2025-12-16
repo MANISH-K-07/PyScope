@@ -56,9 +56,9 @@
 
 <div class="section">
     <h2>Summary</h2>
-    <p><strong>Execution Time:</strong> 1.5524 seconds</p>
-    <p><strong>Average CPU:</strong> 28.31%</p>
-    <p><strong>Peak Memory:</strong> 18.84 MB</p>
+    <p><strong>Execution Time:</strong> 1.8917 seconds</p>
+    <p><strong>Average CPU:</strong> 40.91%</p>
+    <p><strong>Peak Memory:</strong> 19.15 MB</p>
 </div>
 
 <div class="section">
@@ -71,15 +71,9 @@
         </tr>
 
         <tr>
-            <td>examples/slow_script.py:<module></td>
-            <td>1</td>
-            <td>1.4750</td>
-        </tr>
-        
-        <tr>
             <td>examples/slow_script.py:slow</td>
             <td>1</td>
-            <td>1.4749</td>
+            <td>1.8782</td>
         </tr>
         
     </table>
@@ -89,15 +83,15 @@
     <h2>Performance Regression Check</h2>
 
     <div class="regression">
-        ⚠️ Execution time increased from 1.5516s → 1.5557s (+0.2635%)
+        ⚠️ Execution time increased from 1.5524s → 1.9941s (+28.4541%)
     </div>
 
     <div class="regression">
-        ⚠️ Peak memory increased from 18.941MB → 19.0039MB (+0.3300%)
+        ⚠️ Peak memory increased from 18.844MB → 19.2539MB (+2.1766%)
     </div>
 
     <div class="regression">
-        ⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4587s → 1.4644s
+        ⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4750s → 1.9084s
     </div>
 
 </div>
@@ -106,7 +100,7 @@
     <h2>Optimization Suggestions</h2>
 
     <div class="suggestion">
-        Function 'examples/slow_script.py:<module>' dominates runtime (95%).
+        Function 'examples/slow_script.py:slow' dominates runtime (99%).
 Consider optimizing its algorithm or reducing repeated work.
     </div>
 
