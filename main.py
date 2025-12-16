@@ -3,7 +3,7 @@ import os
 
 from pyscope.runner import run
 from pyscope.html_report import generate_html_report
-
+from pyscope.optimizer import OptimizationEngine
 
 def main():
     if len(sys.argv) < 2:
@@ -42,8 +42,17 @@ def main():
         print(f"  Calls      : {h['calls']}")
         print(f"  Total Time : {h['total_time']:.4f} seconds\n")
 
+    print("Optimization Suggestions")
+    print("-" * 40)
+
+    engine = OptimizationEngine(report)
+    suggestions = engine.generate()
+
+    for s in suggestions:
+        print(f"• {s}\n")
+
     print(f"JSON report saved to : {report_path}")
-    print(f"HTML report saved to : {html_path}")
+    print(f"HTML report saved to : {html_path}\n")
 
 
 if __name__ == "__main__":
