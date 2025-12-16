@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PyScope Performance Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e9ecef;
+        }
+        .suggestion {
+            background: #fff3cd;
+            padding: 10px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 10px;
+        }
+        .regression {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #f59e0b;
+            background-color: #fffbeb;
+            font-weight: bold;
+        }
+        .ok {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #16a34a;
+            background-color: #ecfdf5;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>PyScope Performance Report</h1>
+
+<div class="section">
+    <h2>Summary</h2>
+    <p><strong>Execution Time:</strong> 1.8917 seconds</p>
+    <p><strong>Average CPU:</strong> 40.91%</p>
+    <p><strong>Peak Memory:</strong> 19.15 MB</p>
+</div>
+
+<div class="section">
+    <h2>Top Hotspots</h2>
+    <table>
+        <tr>
+            <th>Function</th>
+            <th>Calls</th>
+            <th>Total Time (s)</th>
+        </tr>
+
+        <tr>
+            <td>examples/slow_script.py:slow</td>
+            <td>1</td>
+            <td>1.8782</td>
+        </tr>
+        
+    </table>
+</div>
+
+<div class="section">
+    <h2>Performance Regression Check</h2>
+
+    <div class="regression">
+        ⚠️ Execution time increased from 1.5524s → 1.9941s (+28.4541%)
+    </div>
+
+    <div class="regression">
+        ⚠️ Peak memory increased from 18.844MB → 19.2539MB (+2.1766%)
+    </div>
+
+    <div class="regression">
+        ⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4750s → 1.9084s
+    </div>
+
+</div>
+
+<div class="section">
+    <h2>Optimization Suggestions</h2>
+
+    <div class="suggestion">
+        Function 'examples/slow_script.py:slow' dominates runtime (99%).
+Consider optimizing its algorithm or reducing repeated work.
+    </div>
+
+</div>
+
+</body>
+</html>
