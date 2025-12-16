@@ -3,47 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>PyScope — Python Performance Profiler</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8f9fa;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
             padding: 0;
+            background: #f8f9fa;
             color: #212529;
+            line-height: 1.6;
         }
+
         header {
-            background: #0f172a;
+            background: #0d6efd;
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            text-align: center;
         }
-        h1 {
-            margin: 0;
-            font-size: 2.4rem;
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
         }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+
         main {
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
             padding: 40px 20px;
         }
+
         section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
-        code {
+
+        h2 {
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        code, pre {
+            background: #212529;
+            color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            display: block;
+            overflow-x: auto;
+        }
+
+        .highlight {
             background: #e9ecef;
-            padding: 4px 6px;
-            border-radius: 4px;
+            padding: 15px;
+            border-left: 5px solid #0d6efd;
+            margin-bottom: 20px;
         }
-        a {
-            color: #2563eb;
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
             text-decoration: none;
-            font-weight: 600;
+            color: #0d6efd;
+            font-weight: bold;
         }
+
         footer {
             text-align: center;
-            padding: 20px;
-            background: #e9ecef;
-            font-size: 0.9rem;
+            padding: 30px;
+            background: #212529;
+            color: #adb5bd;
         }
     </style>
 </head>
@@ -51,56 +93,104 @@
 
 <header>
     <h1>PyScope</h1>
-    <p>Lightweight Python Performance Profiling & Regression Detection</p>
+    <p>
+        A lightweight Python performance profiling tool that captures execution time,
+        CPU usage, memory consumption, function-level hotspots, and detects performance
+        regressions across multiple runs — with zero code modification.
+    </p>
 </header>
 
 <main>
 
-<section>
-    <h2>🚀 Overview</h2>
-    <p>
-        PyScope is a developer-focused performance profiling tool that combines
-        execution tracing, hotspot detection, memory usage tracking, and
-        automated performance regression analysis.
-    </p>
-    <p>
-        It is designed to provide <strong>actionable insights</strong> with minimal
-        instrumentation and zero runtime dependencies.
-    </p>
-</section>
+    <section>
+        <h2>What is PyScope?</h2>
+        <p>
+            PyScope is a developer-oriented performance analysis tool designed to help
+            identify bottlenecks in Python programs. Unlike traditional profilers that
+            focus only on a single execution, PyScope tracks performance across multiple
+            runs and detects regressions automatically.
+        </p>
 
-<section>
-    <h2>🧠 Architecture</h2>
-    <ul>
-        <li><strong>HotspotProfiler</strong> — function-level execution timing</li>
-        <li><strong>MultiRunAnalyzer</strong> — detects regressions across runs</li>
-        <li><strong>OptimizationEngine</strong> — heuristic-based suggestions</li>
-        <li><strong>HTML + JSON Reports</strong> — human & machine readable output</li>
-    </ul>
-</section>
+        <div class="highlight">
+            PyScope is built as an end-to-end profiling system: data collection,
+            aggregation, regression analysis, and report generation.
+        </div>
+    </section>
 
-<section>
-    <h2>📊 Sample Report</h2>
-    <p>
-        View a sample PyScope HTML performance report:
-    </p>
-    <p>
-        👉 <a href="sample_report.html">Open Sample Report</a>
-    </p>
-</section>
+    <section>
+        <h2>Key Features</h2>
+        <ul>
+            <li>📊 Function-level hotspot profiling using <code>sys.setprofile</code></li>
+            <li>🧠 Aggregated execution time, CPU usage, and peak memory</li>
+            <li>📈 Multi-run performance regression detection</li>
+            <li>📄 Automatic JSON & HTML report generation</li>
+            <li>⚡ Zero instrumentation — profile any Python script instantly</li>
+            <li>🧪 Designed for benchmarking, optimization, and experimentation workflows</li>
+        </ul>
+    </section>
 
-<section>
-    <h2>🔗 Links</h2>
-    <ul>
-        <li><a href="https://github.com/MANISH-K-07/PyScope">GitHub Repository</a></li>
-        <li><a href="https://github.com/MANISH-K-07/PyScope#readme">Documentation</a></li>
-    </ul>
-</section>
+    <section>
+        <h2>Quick Start</h2>
+
+        <p>Profile any Python script in one command:</p>
+
+        <pre><code>python main.py your_script.py</code></pre>
+
+        <p>PyScope automatically generates:</p>
+        <ul>
+            <li>CLI performance summary</li>
+            <li>JSON report (<code>reports/json/</code>)</li>
+            <li>HTML report (<code>reports/html/</code>)</li>
+            <li>Regression analysis across historical runs</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Sample Output</h2>
+        <p>
+            PyScope produces structured, human-readable reports suitable for both
+            developers and reviewers.
+        </p>
+
+        <ul>
+            <li>Function-level execution hotspots</li>
+            <li>Optimization suggestions</li>
+            <li>Regression warnings when performance degrades</li>
+        </ul>
+
+        <div class="links">
+            <a href="https://github.com/MANISH-K-07/PyScope">View Source on GitHub</a>
+        </div>
+    </section>
+
+    <section>
+        <h2>Architecture Overview</h2>
+        <ul>
+            <li><strong>HotspotProfiler:</strong> Captures function call/return timing</li>
+            <li><strong>Runner:</strong> Manages execution, CPU & memory sampling</li>
+            <li><strong>MultiRunAnalyzer:</strong> Detects regressions across runs</li>
+            <li><strong>Report Engine:</strong> Serializes results to JSON & HTML</li>
+        </ul>
+
+        <div class="highlight">
+            The architecture emphasizes separation of concerns, extensibility, and
+            low runtime overhead.
+        </div>
+    </section>
+
+    <section>
+        <h2>Why PyScope?</h2>
+        <ul>
+            <li>Traditional profilers focus on single-run analysis</li>
+            <li>PyScope treats performance as a time-series problem</li>
+            <li>Built for experimentation, benchmarking, and optimization feedback loops</li>
+        </ul>
+    </section>
 
 </main>
 
 <footer>
-    Built with ❤️ for performance engineering & systems research
+    <p>PyScope — Built for performance-aware Python development</p>
 </footer>
 
 </body>
