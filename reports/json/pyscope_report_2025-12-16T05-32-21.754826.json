@@ -1,0 +1,13 @@
+{
+    "timestamp": "2025-12-16T05:32:21.754826",
+    "execution_time": 1.7849131999537349,
+    "avg_cpu_percent": 38.9,
+    "peak_memory_mb": 18.55078125,
+    "hotspots": [
+        {
+            "function": "examples/slow_script.py:<module>",
+            "calls": 1,
+            "total_time": 1.7255918998271227
+        }
+    ]
+}

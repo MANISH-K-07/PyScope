@@ -1,3 +1,4 @@
+import os
 import json
 from datetime import datetime
 
@@ -26,11 +27,14 @@ class ProfilingReport:
             "hotspots": self.hotspots
         }
 
-    def save(self, output_dir="reports"):
-        filename = f"pyscope_report_{self.timestamp.replace(':', '-')}.json"
-        path = f"{output_dir}/{filename}"
+    def save(self, base_dir="reports"):
+        json_dir = os.path.join(base_dir, "json")
+        os.makedirs(json_dir, exist_ok=True)
 
-        with open(path, "w") as f:
+        filename = f"pyscope_report_{self.timestamp.replace(':', '-')}.json"
+        path = os.path.join(json_dir, filename)
+
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(self.to_dict(), f, indent=4)
 
         return path

@@ -1,4 +1,5 @@
 import sys
+import os
 
 from pyscope.runner import run
 from pyscope.html_report import generate_html_report
@@ -14,11 +15,17 @@ def main():
     # Run profiler
     report = run(script_path)
 
-    # Save JSON report
+    # Save JSON report (reports/json/)
     report_path = report.save()
 
+    # Prepare HTML output directory (reports/html/)
+    html_dir = os.path.join("reports", "html")
+    os.makedirs(html_dir, exist_ok=True)
+
+    html_filename = os.path.basename(report_path).replace(".json", ".html")
+    html_path = os.path.join(html_dir, html_filename)
+
     # Generate HTML report
-    html_path = report_path.replace(".json", ".html")
     generate_html_report(report, html_path)
 
     # CLI output
