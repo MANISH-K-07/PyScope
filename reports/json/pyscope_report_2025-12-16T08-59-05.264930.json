@@ -1,0 +1,39 @@
+{
+    "timestamp": "2025-12-16T08:59:05.264930",
+    "script": "examples/slow_script.py",
+    "execution_time": 1.5523594999685884,
+    "avg_cpu_percent": 28.313333333333333,
+    "peak_memory_mb": 18.84375,
+    "hotspots": [
+        {
+            "function": "examples/slow_script.py:<module>",
+            "calls": 1,
+            "total_time": 1.4749578996561468
+        },
+        {
+            "function": "examples/slow_script.py:slow",
+            "calls": 1,
+            "total_time": 1.4749364000745118
+        }
+    ],
+    "suggestions": [
+        "Function 'examples/slow_script.py:<module>' dominates runtime (95%).\nConsider optimizing its algorithm or reducing repeated work."
+    ],
+    "regression": {
+        "status": "regression",
+        "messages": [
+            {
+                "level": "warning",
+                "text": "Execution time increased from 1.5516s \u2192 1.5557s (+0.2635%)"
+            },
+            {
+                "level": "warning",
+                "text": "Peak memory increased from 18.941MB \u2192 19.0039MB (+0.3300%)"
+            },
+            {
+                "level": "warning",
+                "text": "Top hotspot 'examples/slow_script.py:<module>' increased from 1.4587s \u2192 1.4644s"
+            }
+        ]
+    }
+}

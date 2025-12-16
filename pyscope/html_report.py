@@ -1,7 +1,8 @@
 from pyscope.optimizer import OptimizationEngine
 
 
-def generate_html_report(report, output_path):
+def generate_html_report(report, output_path, regression=None):
+    # ---------------- Optimization Suggestions ----------------
     engine = OptimizationEngine(report)
     suggestions = engine.generate()
 
@@ -41,6 +42,20 @@ def generate_html_report(report, output_path):
             border-left: 5px solid #ffc107;
             margin-bottom: 10px;
         }}
+        .regression {{
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #f59e0b;
+            background-color: #fffbeb;
+            font-weight: bold;
+        }}
+        .ok {{
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #16a34a;
+            background-color: #ecfdf5;
+            font-weight: bold;
+        }}
     </style>
 </head>
 <body>
@@ -76,17 +91,49 @@ def generate_html_report(report, output_path):
     html += """
     </table>
 </div>
+"""
 
+    # ---------------- Regression Section ----------------
+    if regression:
+        html += """
+<div class="section">
+    <h2>Performance Regression Check</h2>
+"""
+        if regression["status"] == "insufficient":
+            html += f"""
+    <div class="ok">
+        {regression["messages"][0]}
+    </div>
+"""
+        elif regression["status"] == "ok":
+            html += f"""
+    <div class="ok">
+        {regression["messages"][0]}
+    </div>
+"""
+        else:
+            for msg in regression["messages"]:
+                html += f"""
+    <div class="regression">
+        ⚠️ {msg["text"]}
+    </div>
+"""
+        html += """
+</div>
+"""
+
+    # ---------------- Optimization Section ----------------
+    html += """
 <div class="section">
     <h2>Optimization Suggestions</h2>
 """
 
     for s in suggestions:
         html += f"""
-        <div class="suggestion">
-            {s}
-        </div>
-        """
+    <div class="suggestion">
+        {s}
+    </div>
+"""
 
     html += """
 </div>
