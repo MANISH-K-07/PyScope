@@ -14,27 +14,36 @@ def main():
 
     script_path = sys.argv[1]
 
-    # Run profiler
+    # ---------------- Run profiler ----------------
     report = run(script_path)
 
-    # Attach script path for multi-run comparison
+    # Attach script path (used for multi-run comparison)
     report.script = script_path
 
-    # Generate optimization suggestions
+    # ---------------- Optimization Suggestions ----------------
     engine = OptimizationEngine(report)
     report.suggestions = engine.generate()
 
-    # Save JSON report
+    # ---------------- Multi-run regression analysis ----------------
+    analyzer = MultiRunAnalyzer()
+    regression = analyzer.compare_latest(script_path)
+
+    # Attach regression to report (so JSON & HTML have it)
+    report.regression = regression
+
+    # ---------------- Save JSON report ----------------
+    json_dir = os.path.join("reports", "json")
+    os.makedirs(json_dir, exist_ok=True)
     report_path = report.save()
 
-    # Save HTML report
+    # ---------------- Save HTML report ----------------
     html_dir = os.path.join("reports", "html")
     os.makedirs(html_dir, exist_ok=True)
     html_filename = os.path.basename(report_path).replace(".json", ".html")
     html_path = os.path.join(html_dir, html_filename)
-    generate_html_report(report, html_path)
+    generate_html_report(report, html_path, regression)
 
-    # CLI output
+    # ---------------- CLI Output ----------------
     print("\nPyScope Performance Report")
     print("-" * 40)
     print(f"Execution Time : {report.execution_time:.4f} seconds")
@@ -56,19 +65,19 @@ def main():
     print(f"\nJSON report saved to : {report_path}")
     print(f"HTML report saved to : {html_path}")
 
-    # Multi-run comparison
-    analyzer = MultiRunAnalyzer()
-    regression_summary = analyzer.compare_latest(script_path)
-
+    # ---------------- Regression CLI Output ----------------
     print("\nPerformance Regression Check")
     print("-" * 40)
-    if isinstance(regression_summary, list):
-        for r in regression_summary:
-            print(f"⚠️ {r}")
+    if regression["status"] == "insufficient":
+        print(regression["messages"][0])
+    elif regression["status"] == "ok":
+        print(regression["messages"][0])
     else:
-        print(regression_summary)
+        for msg in regression["messages"]:
+            print(f"⚠️ {msg['text']}")
 
     print("")
+
 
 if __name__ == "__main__":
     main()

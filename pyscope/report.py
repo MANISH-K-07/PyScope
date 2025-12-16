@@ -4,11 +4,20 @@ from datetime import datetime
 
 
 class ProfilingReport:
-    def __init__(self, execution_time, avg_cpu, peak_memory, hotspots, script_path=None):
+    def __init__(
+        self,
+        execution_time,
+        avg_cpu,
+        peak_memory,
+        hotspots,
+        script_path=None,
+        regression=None
+    ):
         self.timestamp = datetime.utcnow().isoformat()
         self.execution_time = execution_time
         self.avg_cpu_percent = avg_cpu
         self.peak_memory_mb = peak_memory
+
         self.hotspots = [
             {
                 "function": func,
@@ -17,20 +26,27 @@ class ProfilingReport:
             }
             for func, data in hotspots
         ]
+
         self.suggestions = []
-        self.script = script_path  # <-- store script path for multi-run comparison
+        self.script = script_path            # script path for multi-run comparison
+        self.regression = regression         # structured regression analysis
 
     def to_dict(self):
         data = {
             "timestamp": self.timestamp,
-            "script": self.script,  # <-- include script path in JSON
+            "script": self.script,
             "execution_time": self.execution_time,
             "avg_cpu_percent": self.avg_cpu_percent,
             "peak_memory_mb": self.peak_memory_mb,
             "hotspots": self.hotspots,
         }
+
         if self.suggestions:
             data["suggestions"] = self.suggestions
+
+        if self.regression:
+            data["regression"] = self.regression
+
         return data
 
     def save(self, base_dir="reports"):
