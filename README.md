@@ -91,7 +91,7 @@ ProfilingReport
 ### Folder Structure
 ```
 PyScope/
-├── main.py # CLI entry point
+├── main.py                 # CLI entry point
 ├── pyscope/
 │   ├── runner.py           # Orchestrates profiling lifecycle
 │   ├── timer.py            # Wall-clock timing
