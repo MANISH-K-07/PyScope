@@ -142,32 +142,33 @@ python main.py examples/slow_script.py
 ```
 PyScope Performance Report
 ----------------------------------------
-Execution Time : 1.5494 seconds
-Average CPU    : 28.32 %
-Peak Memory   : 18.80 MB
+Execution Time : 1.5541 seconds
+Average CPU    : 28.42 %
+Peak Memory   : 19.12 MB
 
 Top Hotspots
 ----------------------------------------
 examples/slow_script.py:<module>
   Calls      : 1
-  Total Time : 1.4540 seconds
+  Total Time : 1.4878 seconds
 
 examples/slow_script.py:slow
   Calls      : 1
-  Total Time : 1.4540 seconds
+  Total Time : 1.4878 seconds
 
 Optimization Suggestions
 ----------------------------------------
-• Function 'examples/slow_script.py:<module>' dominates runtime (94%).
+• Function 'examples/slow_script.py:<module>' dominates runtime (96%).
 Consider optimizing its algorithm or reducing repeated work.
 
-JSON report saved to : reports\json\pyscope_report_2025-12-16T08-23-14.567350.json
-HTML report saved to : reports\html\pyscope_report_2025-12-16T08-23-14.567350.html
+JSON report saved to : reports\json\pyscope_report_2025-12-16T08-36-44.639978.json
+HTML report saved to : reports\html\pyscope_report_2025-12-16T08-36-44.639978.html
 
 Performance Regression Check
 ----------------------------------------
-⚠️ Execution time increased from 1.4520s → 1.5494s (+6.7106%)
-⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4471s → 1.4540s
+⚠️ Execution time increased from 1.5523s → 1.5541s (+0.1121%)
+⚠️ Peak memory increased from 19.078MB → 19.1211MB (+0.2252%)
+⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4711s → 1.4878s
 ```
 ### What You Get
 
