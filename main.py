@@ -6,6 +6,10 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 script_path = sys.argv[1]
-time_taken = run(script_path)
+report = run(script_path)
 
-print(f"Execution Time: {time_taken:.4f} seconds")
+print("\nPyScope Performance Report")
+print("-" * 30)
+print(f"Execution Time : {report['execution_time']:.4f} seconds")
+print(f"Average CPU    : {report['avg_cpu_percent']:.2f} %")
+print(f"Peak Memory   : {report['peak_memory_mb']:.2f} MB")
