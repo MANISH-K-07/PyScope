@@ -1,0 +1,22 @@
+{
+    "timestamp": "2025-12-16T07:49:01.781220",
+    "script": "examples/slow_script.py",
+    "execution_time": 1.5457382998429239,
+    "avg_cpu_percent": 29.759999999999998,
+    "peak_memory_mb": 18.75390625,
+    "hotspots": [
+        {
+            "function": "examples/slow_script.py:<module>",
+            "calls": 1,
+            "total_time": 1.4735763003118336
+        },
+        {
+            "function": "examples/slow_script.py:slow",
+            "calls": 1,
+            "total_time": 1.4735436998307705
+        }
+    ],
+    "suggestions": [
+        "Function 'examples/slow_script.py:<module>' dominates runtime (95%).\nConsider optimizing its algorithm or reducing repeated work."
+    ]
+}

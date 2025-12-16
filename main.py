@@ -4,6 +4,8 @@ import os
 from pyscope.runner import run
 from pyscope.html_report import generate_html_report
 from pyscope.optimizer import OptimizationEngine
+from pyscope.multi_run import MultiRunAnalyzer
+
 
 def main():
     if len(sys.argv) < 2:
@@ -15,17 +17,21 @@ def main():
     # Run profiler
     report = run(script_path)
 
-    # Save JSON report (reports/json/)
+    # Attach script path for multi-run comparison
+    report.script = script_path
+
+    # Generate optimization suggestions
+    engine = OptimizationEngine(report)
+    report.suggestions = engine.generate()
+
+    # Save JSON report
     report_path = report.save()
 
-    # Prepare HTML output directory (reports/html/)
+    # Save HTML report
     html_dir = os.path.join("reports", "html")
     os.makedirs(html_dir, exist_ok=True)
-
     html_filename = os.path.basename(report_path).replace(".json", ".html")
     html_path = os.path.join(html_dir, html_filename)
-
-    # Generate HTML report
     generate_html_report(report, html_path)
 
     # CLI output
@@ -44,16 +50,25 @@ def main():
 
     print("Optimization Suggestions")
     print("-" * 40)
+    for s in report.suggestions:
+        print(f"• {s}")
 
-    engine = OptimizationEngine(report)
-    suggestions = engine.generate()
+    print(f"\nJSON report saved to : {report_path}")
+    print(f"HTML report saved to : {html_path}")
 
-    for s in suggestions:
-        print(f"• {s}\n")
+    # Multi-run comparison
+    analyzer = MultiRunAnalyzer()
+    regression_summary = analyzer.compare_latest(script_path)
 
-    print(f"JSON report saved to : {report_path}")
-    print(f"HTML report saved to : {html_path}\n")
+    print("\nPerformance Regression Check")
+    print("-" * 40)
+    if isinstance(regression_summary, list):
+        for r in regression_summary:
+            print(f"⚠️ {r}")
+    else:
+        print(regression_summary)
 
+    print("")
 
 if __name__ == "__main__":
     main()

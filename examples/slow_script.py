@@ -1,8 +1,9 @@
 import time
 
-total = 0
-for i in range(8_000_000):
-    total += i
+def slow():
+    total = 0
+    for i in range(20_000_000):  # increase this number
+        total += i
+    time.sleep(1)
 
-time.sleep(1)
-print("Finished execution")
+slow()

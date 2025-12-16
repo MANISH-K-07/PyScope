@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PyScope Performance Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e9ecef;
+        }
+        .suggestion {
+            background: #fff3cd;
+            padding: 10px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>PyScope Performance Report</h1>
+
+<div class="section">
+    <h2>Summary</h2>
+    <p><strong>Execution Time:</strong> 1.5535 seconds</p>
+    <p><strong>Average CPU:</strong> 27.24%</p>
+    <p><strong>Peak Memory:</strong> 18.86 MB</p>
+</div>
+
+<div class="section">
+    <h2>Top Hotspots</h2>
+    <table>
+        <tr>
+            <th>Function</th>
+            <th>Calls</th>
+            <th>Total Time (s)</th>
+        </tr>
+
+        <tr>
+            <td>examples/slow_script.py:<module></td>
+            <td>1</td>
+            <td>1.4633</td>
+        </tr>
+        
+        <tr>
+            <td>examples/slow_script.py:slow</td>
+            <td>1</td>
+            <td>1.4633</td>
+        </tr>
+        
+    </table>
+</div>
+
+<div class="section">
+    <h2>Optimization Suggestions</h2>
+
+        <div class="suggestion">
+            Function 'examples/slow_script.py:<module>' dominates runtime (94%).
+Consider optimizing its algorithm or reducing repeated work.
+        </div>
+        
+</div>
+
+</body>
+</html>

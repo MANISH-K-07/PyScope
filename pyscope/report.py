@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class ProfilingReport:
-    def __init__(self, execution_time, avg_cpu, peak_memory, hotspots):
+    def __init__(self, execution_time, avg_cpu, peak_memory, hotspots, script_path=None):
         self.timestamp = datetime.utcnow().isoformat()
         self.execution_time = execution_time
         self.avg_cpu_percent = avg_cpu
@@ -17,15 +17,21 @@ class ProfilingReport:
             }
             for func, data in hotspots
         ]
+        self.suggestions = []
+        self.script = script_path  # <-- store script path for multi-run comparison
 
     def to_dict(self):
-        return {
+        data = {
             "timestamp": self.timestamp,
+            "script": self.script,  # <-- include script path in JSON
             "execution_time": self.execution_time,
             "avg_cpu_percent": self.avg_cpu_percent,
             "peak_memory_mb": self.peak_memory_mb,
-            "hotspots": self.hotspots
+            "hotspots": self.hotspots,
         }
+        if self.suggestions:
+            data["suggestions"] = self.suggestions
+        return data
 
     def save(self, base_dir="reports"):
         json_dir = os.path.join(base_dir, "json")
