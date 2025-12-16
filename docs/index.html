@@ -66,6 +66,15 @@
             overflow-x: auto;
         }
 
+        .tree {
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
         .highlight {
             background: #e9ecef;
             padding: 15px;
@@ -252,6 +261,27 @@ Performance Regression Check
 
     <section>
         <h2>Architecture Overview</h2>
+
+    <div class="tree">
+Target Script
+     │
+     ▼
+Runner (runner.py)
+     │
+     ├── ExecutionTimer        → wall-clock execution time
+     ├── ProcessProfiler       → CPU & memory sampling
+     ├── HotspotProfiler       → function-level hotspots
+     │
+     ▼
+ProfilingReport
+     │
+     ├── JSON Report (machine-readable)
+     ├── HTML Report (human-readable)
+     │
+     ├── OptimizationEngine   → rule-based suggestions
+     └── MultiRunAnalyzer     → regression detection
+    </div>
+
         <ul>
             <li><strong>HotspotProfiler:</strong> Captures function call/return timing</li>
             <li><strong>Runner:</strong> Manages execution, CPU & memory sampling</li>
@@ -263,7 +293,72 @@ Performance Regression Check
             The architecture emphasizes separation of concerns, extensibility, and
             low runtime overhead.
         </div>
+
+    <h3>Folder Structure</h3>
+
+    <div class="tree">
+PyScope/
+├── main.py                 # CLI entry point
+├── pyscope/
+│   ├── runner.py           # Orchestrates profiling lifecycle
+│   ├── timer.py            # Wall-clock timing
+│   ├── profiler.py         # CPU & memory sampling (psutil)
+│   ├── hotspots.py         # Function-level execution tracking
+│   ├── optimizer.py        # Optimization suggestion engine
+│   ├── report.py           # JSON report generation
+│   ├── html_report.py      # HTML report rendering
+│   └── multi_run.py        # Historical regression analysis
+├── examples/
+│   └── slow_script.py      # Sample workload
+└── reports/
+    ├── json/
+    └── html/
+    </div>
+
     </section>
+
+<section>
+    <h2>🔄 Multi-Run Regression Detection</h2>
+
+    <h3>Each run produces a timestamped JSON report</h3>
+    <ul>
+        <li>Stored in <code>reports/json/</code></li>
+        <li>Includes execution time, memory, hotspots, script path</li>
+    </ul>
+
+    <h3>Script-aware matching</h3>
+    <ul>
+        <li>Only compares runs of the same script</li>
+        <li>Uses OS-normalized absolute paths to avoid Windows/Linux mismatches</li>
+    </ul>
+
+    <h3>Latest-vs-Previous comparison</h3>
+    <ul>
+        <li>Execution time</li>
+        <li>Peak memory usage</li>
+        <li>Top hotspot cumulative time</li>
+        <li>Threshold-based decision
+            <ul>
+                <li>Default: 10% increase = regression</li>
+                <li>Fully configurable</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Noise-aware</h3>
+    <ul>
+        <li>Small runtime fluctuations are ignored</li>
+        <li>Prevents false positives caused by OS scheduling variance</li>
+    </ul>
+
+    <h3>⚙️ Configuration</h3>
+    <p>Adjust regression sensitivity in <code>pyscope/multi_run.py</code>:</p>
+    <pre>
+def compare_latest(self, script_name=None, threshold=0.001):
+    # Lower threshold → more sensitive detection
+    # Higher threshold → more conservative detection
+    </pre>
+</section>
 
     <section>
         <h2>Why PyScope?</h2>
@@ -279,6 +374,29 @@ Performance Regression Check
     	    </a>
     	</div>
     </section>
+
+<section>
+    <h2>🛣️ Future Extensions</h2>
+    <ul>
+        <li>Statistical confidence intervals over multiple baseline runs</li>
+        <li>CI/CD integration (fail builds on regression)</li>
+        <li>Flamegraph visualization</li>
+        <li>ML-assisted optimization recommendations</li>
+        <li>Language-agnostic profiling backend</li>
+    </ul>
+</section>
+
+<section>
+    <h2>🎓 Academic & Research Relevance</h2>
+    <p>PyScope demonstrates:</p>
+    <ul>
+        <li>Systems-level performance engineering</li>
+        <li>Runtime instrumentation</li>
+        <li>Historical performance analysis</li>
+        <li>Noise-aware regression detection</li>
+        <li>Clean, extensible software architecture</li>
+    </ul>
+</section>
 
 </main>
 
