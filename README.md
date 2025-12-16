@@ -120,17 +120,6 @@ def compare_latest(self, script_name=None, threshold=0.001):
 
 ---
 
-## 📌 Example: Regression Detection
-```
-Performance Regression Check
-----------------------------------------
-⚠️ Execution time increased from 1.5424s → 1.5462s (+0.2476%)
-⚠️ Peak memory increased from 19.004MB → 19.1055MB (+0.5344%)
-```
-
-
----
-
 ## 🧪 Usage
 
 ### Run PyScope on any Python script
@@ -139,6 +128,7 @@ Performance Regression Check
 python main.py examples/slow_script.py
 ```
 ### Demo Output
+- **CLI**
 ```
 PyScope Performance Report
 ----------------------------------------
@@ -170,6 +160,9 @@ Performance Regression Check
 ⚠️ Peak memory increased from 19.078MB → 19.1211MB (+0.2252%)
 ⚠️ Top hotspot 'examples/slow_script.py:<module>' increased from 1.4711s → 1.4878s
 ```
+- **HTML**
+<img width="1906" height="898" alt="image" src="https://github.com/user-attachments/assets/f3311b8f-f4a9-454e-922f-d6dd0dcce86a" />
+
 ### What You Get
 
 - CLI performance summary
