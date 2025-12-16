@@ -1,46 +1,39 @@
-from pyscope.optimizer import OptimizationEngine
 
-
-def generate_html_report(report, output_path):
-    engine = OptimizationEngine(report)
-    suggestions = engine.generate()
-
-    html = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>PyScope Performance Report</title>
     <style>
-        body {{
+        body {
             font-family: Arial, sans-serif;
             margin: 40px;
             background-color: #f8f9fa;
-        }}
-        h1, h2 {{
+        }
+        h1, h2 {
             color: #333;
-        }}
-        .section {{
+        }
+        .section {
             margin-bottom: 30px;
-        }}
-        table {{
+        }
+        table {
             width: 100%;
             border-collapse: collapse;
-        }}
-        th, td {{
+        }
+        th, td {
             border: 1px solid #ccc;
             padding: 8px;
             text-align: left;
-        }}
-        th {{
+        }
+        th {
             background-color: #e9ecef;
-        }}
-        .suggestion {{
+        }
+        .suggestion {
             background: #fff3cd;
             padding: 10px;
             border-left: 5px solid #ffc107;
             margin-bottom: 10px;
-        }}
+        }
     </style>
 </head>
 <body>
@@ -49,9 +42,9 @@ def generate_html_report(report, output_path):
 
 <div class="section">
     <h2>Summary</h2>
-    <p><strong>Execution Time:</strong> {report.execution_time:.4f} seconds</p>
-    <p><strong>Average CPU:</strong> {report.avg_cpu_percent:.2f}%</p>
-    <p><strong>Peak Memory:</strong> {report.peak_memory_mb:.2f} MB</p>
+    <p><strong>Execution Time:</strong> 1.7610 seconds</p>
+    <p><strong>Average CPU:</strong> 40.19%</p>
+    <p><strong>Peak Memory:</strong> 18.44 MB</p>
 </div>
 
 <div class="section">
@@ -62,38 +55,25 @@ def generate_html_report(report, output_path):
             <th>Calls</th>
             <th>Total Time (s)</th>
         </tr>
-"""
 
-    for h in report.hotspots:
-        html += f"""
         <tr>
-            <td>{h['function']}</td>
-            <td>{h['calls']}</td>
-            <td>{h['total_time']:.4f}</td>
+            <td>examples/slow_script.py:<module></td>
+            <td>1</td>
+            <td>1.7449</td>
         </tr>
-        """
-
-    html += """
+        
     </table>
 </div>
 
 <div class="section">
     <h2>Optimization Suggestions</h2>
-"""
 
-    for s in suggestions:
-        html += f"""
         <div class="suggestion">
-            {s}
+            Function 'examples/slow_script.py:<module>' dominates runtime (99%).
+Consider optimizing its algorithm or reducing repeated work.
         </div>
-        """
-
-    html += """
+        
 </div>
 
 </body>
 </html>
-"""
-
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html)
