@@ -146,22 +146,105 @@
     </section>
 
     <section>
-        <h2>Sample Output</h2>
-        <p>
-            PyScope produces structured, human-readable reports suitable for both
-            developers and reviewers.
-        </p>
+    <h2>Sample Output</h2>
 
-        <ul>
-            <li>Function-level execution hotspots</li>
-            <li>Optimization suggestions</li>
-            <li>Regression warnings when performance degrades</li>
-        </ul>
+    <p>
+        PyScope generates multiple forms of output to support both
+        developer workflows and performance analysis over time.
+        Below is a real example captured from profiling a slow Python script.
+    </p>
 
-        <div class="links">
-            <a href="https://github.com/MANISH-K-07/PyScope">View Source on GitHub</a>
-        </div>
-    </section>
+    <h3>CLI Output</h3>
+    <p>
+        A concise command-line summary highlighting execution time,
+        resource usage, hotspots, optimization hints, and regression warnings.
+    </p>
+
+    <pre><code>PyScope Performance Report
+----------------------------------------
+Execution Time : 1.8917 seconds
+Average CPU    : 40.91 %
+Peak Memory   : 19.15 MB
+
+Top Hotspots
+----------------------------------------
+examples/slow_script.py:slow
+  Calls      : 1
+  Total Time : 1.8782 seconds
+
+Optimization Suggestions
+----------------------------------------
+• Function 'examples/slow_script.py:slow' dominates runtime (99%).
+Consider optimizing its algorithm or reducing repeated work.
+
+JSON report saved to : reports/json/pyscope_report_2025-12-16T12-26-04.603376.json
+HTML report saved to : reports/html/pyscope_report_2025-12-16T12-26-04.603376.html
+
+Performance Regression Check
+----------------------------------------
+⚠️ Execution time increased from 1.5524s → 1.9941s (+28.4541%)
+⚠️ Peak memory increased from 18.844MB → 19.2539MB (+2.1766%)
+⚠️ Top hotspot 'examples/slow_script.py:&lt;module&gt;' increased from 1.4750s → 1.9084s
+</code></pre>
+
+    <h3>JSON Report</h3>
+    <p>
+        A structured machine-readable report suitable for automation,
+        dashboards, historical analysis, and research experiments.
+    </p>
+
+    <pre><code>{
+    "timestamp": "2025-12-16T12:26:04.603376",
+    "script": "examples/slow_script.py",
+    "execution_time": 1.8917008000425994,
+    "avg_cpu_percent": 40.90555555555555,
+    "peak_memory_mb": 19.15234375,
+    "hotspots": [
+        {
+            "function": "examples/slow_script.py:slow",
+            "calls": 1,
+            "total_time": 1.878245399799198
+        }
+    ],
+    "suggestions": [
+        "Function 'examples/slow_script.py:slow' dominates runtime (99%).\nConsider optimizing its algorithm or reducing repeated work."
+    ],
+    "regression": {
+        "status": "regression",
+        "messages": [
+            {
+                "level": "warning",
+                "text": "Execution time increased from 1.5524s → 1.9941s (+28.4541%)"
+            },
+            {
+                "level": "warning",
+                "text": "Peak memory increased from 18.844MB → 19.2539MB (+2.1766%)"
+            },
+            {
+                "level": "warning",
+                "text": "Top hotspot 'examples/slow_script.py:<module>' increased from 1.4750s → 1.9084s"
+            }
+        ]
+    }
+}</code></pre>
+
+    <h3>HTML Report</h3>
+    <p>
+        An interactive, human-readable HTML report that visualizes
+        performance metrics, hotspots, optimization suggestions,
+        and regression alerts in a single view.
+    </p>
+
+    <img
+        src="assets/html-report-sample.png"
+        alt="PyScope HTML Performance Report"
+        style="width:100%; max-width:900px; border:1px solid #ccc; border-radius:8px;"
+    />
+
+    <div class="links" style="margin-top:20px;">
+        <a href="https://github.com/MANISH-K-07/PyScope">View Source on GitHub</a>
+    </div>
+</section>
 
     <section>
         <h2>Architecture Overview</h2>
