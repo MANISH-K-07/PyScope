@@ -1,8 +1,9 @@
+# PyScope 
+
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/github/license/MANISH-K-07/PyScope)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/demo-GitHub%20Pages-brightgreen)](https://manish-k-07.github.io/PyScope)
 
-# PyScope 
 ### Python Performance Profiler — with Multi-Run Regression Detection & Optimization Suggestions
 
 ---
